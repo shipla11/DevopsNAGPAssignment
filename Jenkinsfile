@@ -19,13 +19,23 @@ pipeline{
             bat "mvn test"
             }
         }
-        stage("Sonar Analysis"){
+	stage("Publish to Artifactory"){
             steps{
-            withSonarQubeEnv("TestSonarQubeScanner")
-                {
-		    sh "mvn clean package sonar:sonar"    
-                }
-            }
+                rtMavenDeployer(
+                    id: 'deployer',
+                    serverId: 'JfrogServer',
+                    releaseRepo: 'shipla.nagp',
+                    snapshotRepo: 'shipla.nagp'
+                )
+                rtMavenRun(
+                    pom: 'pom.xml',
+                    goals: 'clean install',
+                    deployerId: 'deployer'
+                    )
+                rtPublishBuildInfo(
+                    serverId:'JfrogServer',
+                )
+            }        
         }
       }
     post{
