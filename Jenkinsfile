@@ -1,6 +1,6 @@
 pipeline{
     agent any
-    	tools{
+    tools{
         maven 'Maven'
     }
     stages{
@@ -28,8 +28,8 @@ pipeline{
                 }
             }
         }
-	    
-   post{
+      }
+    post{
         success{
             bat "echo success"
             }
