@@ -28,9 +28,7 @@ pipeline{
 	    -D sonar.host.url=http://192.168.0.102:9000"     
                 }
             }
-        }
-      
-    }
+      }
     post{
         success{
             bat "echo success"
