@@ -24,7 +24,7 @@ pipeline{
             withSonarQubeEnv("TestSonarQubeScanner")
                 {
 		    bat "echo Sonar Run half"
-                        bat "mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.8.5:sonar"        
+                        bat "mvn org.sonarsource.scanner.maven:sonar-maven-plugin:7.8:sonar"        
                 }
             }
         }
