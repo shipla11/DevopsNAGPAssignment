@@ -19,14 +19,13 @@ pipeline{
             bat "mvn test"
             }
         }
-        stage("Sonar Analysis"){
-            steps{
-            withSonarQubeEnv("TestSonarQubeScanner")
-                {
-		    sh "${scannerHome}/bin/sonar-scanner\
-	-D sonar.login=admin\
-	-D sonar.password=admin\
-	-D sonar.host.url=localhost:9000"     
+        stage('Sonarqube Analysis'){
+	    def scannerHome = tool 'TestSonarQubeScanner';
+	    withSonarQubeEnv('SonarQubeScannerToken'){
+	    sh "${scannerHome}/bin/sonar-scanner\
+	    -D sonar.login=admin\
+	    -D sonar.password=admin\
+	    -D sonar.host.url=http://192.168.0.102:9000"     
                 }
             }
         }
