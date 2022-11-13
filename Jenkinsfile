@@ -19,14 +19,7 @@ pipeline{
             bat "mvn test"
             }
         }
-	    stage("Sonar Analysis"){
-            steps{
-            withSonarQubeEnv("TestSonarQubeScanner")
-                {
-		    sh "mvn clean package sonar:sonar"    
-                }
-            }
-        }
+	   
 	stage("Publish to Artifactory"){
             steps{
                 rtMavenDeployer(
