@@ -32,4 +32,5 @@ pipeline{
             bat "echo success"
             }
         }
+   }
 }
