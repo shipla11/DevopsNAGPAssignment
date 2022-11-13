@@ -19,18 +19,19 @@ pipeline{
             bat "mvn test"
             }
         }
-       stage("Sonar Analysis"){
+        stage("Sonar Analysis"){
             steps{
-            withSonarQubeEnv("TestSonarQubeScanner")
+            withSonarQubeEnv("Test_SonarQube")
                 {
-		    sh "mvn org.sonarsource.scanner.maven:sonar-maven-plugin:2.5:sonar"        
+		    bat "echo Sonar Run half"
+                        bat "mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.8.0.2131:sonar"        
                 }
             }
         }
-    post{
+	    
+   post{
         success{
             bat "echo success"
             }
         }
-   }
 }
