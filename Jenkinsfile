@@ -23,8 +23,10 @@ pipeline{
             steps{
             withSonarQubeEnv("TestSonarQubeScanner")
                 {
-		    bat "echo Sonar Run half"
-                        bat "mvn org.sonarsource.scanner.maven:sonar-maven-plugin:7.8:sonar"        
+		    sh "${scannerHome}/bin/sonar-scanner\
+	-D sonar.login=admin\
+	-D sonar.password=admin\
+	-D sonar.host.url=localhost:9000"     
                 }
             }
         }
